@@ -6,7 +6,7 @@
   },
   "servers": [
     {
-      "url": "https://sal-api-lexus.rotorint.com"
+      "url": "https://sal-api-lexus.rotorint.com/uat"
     }
   ],
   "security": [
@@ -15,7 +15,7 @@
     }
   ],
   "paths": {
-    "/uat/v2/assets/exterior/images": {
+    "/v2/assets/exterior/images": {
       "get": {
         "tags": [
           "default"
@@ -125,6 +125,23 @@
       }
     },
     "schemas": {
+      "FileType": {
+        "type": "string",
+        "enum": [
+          "png",
+          "jpg"
+        ]
+      },
+      "ImageResolution": {
+        "type": "string",
+        "enum": [
+          "750x422",
+          "907x510",
+          "1200x675",
+          "1920x1080",
+          "3840x2160"
+        ]
+      },
       "Detail": {
         "type": "object",
         "properties": {
@@ -172,6 +189,60 @@
           },
           "spinnerImageCount": {
             "type": "string"
+          },
+          "filetypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FileType"
+            }
+          },
+          "colorcode": {
+            "type": "string"
+          },
+          "resolutions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImageResolution"
+            }
+          },
+          "collection": {
+            "type": "object"
+          },
+          "example": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "grade": {
+            "type": "string"
+          },
+          "frameType": {
+            "type": "object"
+          },
+          "embargodate": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "spec": {
+            "type": "string"
+          },
+          "secondary_index": {
+            "type": "string"
+          },
+          "materialcode": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "productiontime": {
+            "type": "string"
+          },
+          "visible_on_live": {
+            "type": "boolean"
           }
         }
       },
