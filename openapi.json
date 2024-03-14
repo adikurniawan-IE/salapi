@@ -6,7 +6,7 @@
   },
   "servers": [
     {
-      "url": "https://sal-api-lexus.rotorint.com/uat"
+      "url": ""
     }
   ],
   "security": [
