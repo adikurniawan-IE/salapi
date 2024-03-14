@@ -1,0 +1,205 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Rotor SAL-API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://sal-api-lexus.rotorint.com"
+    }
+  ],
+  "security": [
+    {
+      "apikeyAuth": []
+    }
+  ],
+  "paths": {
+    "/uat/v2/assets/exterior/images": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "hero",
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "%7B%22materialcode%22%3A+%224E25120A0FA20040%22%2C+%22collection%22%3A+%22hero%22%7D"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageResults"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageResults"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageResults"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apikeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      }
+    },
+    "schemas": {
+      "Detail": {
+        "type": "object",
+        "properties": {
+          "blueGreen": {
+            "type": "string"
+          },
+          "scannedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Links": {
+        "type": "object",
+        "properties": {
+          "next": {
+            "type": "string"
+          }
+        }
+      },
+      "ImageItem": {
+        "type": "object",
+        "properties": {
+          "_created": {
+            "type": "string"
+          },
+          "_updated": {
+            "type": "string"
+          },
+          "hidden": {
+            "type": "boolean"
+          },
+          "color": {
+            "type": "string"
+          },
+          "angles": {
+            "type": "string"
+          },
+          "prefix": {
+            "type": "string"
+          },
+          "spinnerImageCount": {
+            "type": "string"
+          }
+        }
+      },
+      "ImageResults": {
+        "type": "object",
+        "properties": {
+          "_detail": {
+            "$ref": "#/components/schemas/Detail"
+          },
+          "_links": {
+            "$ref": "#/components/schemas/Links"
+          },
+          "_items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImageItem"
+            }
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
