@@ -6,7 +6,7 @@
   },
   "servers": [
     {
-      "url": ""
+      "url": "https://sal-api-lexus.rotorint.com/uat"
     }
   ],
   "security": [
@@ -15,7 +15,7 @@
     }
   ],
   "paths": {
-    "/v2/assets/exterior/images": {
+    "/v2/assets/exterior/heroes": {
       "get": {
         "tags": [
           "default"
